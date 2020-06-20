@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
     cv::Mat output_img = cv::Mat::zeros(input_video_height, input_video_width, CV_8UC3);
     int frame_count = 0;
 
-    cv::Mat dst = cv::Mat::zeros(544, 960, CV_8UC3);//この辺は適当に
+    cv::Mat dst = cv::Mat::zeros(544, 1220, CV_8UC3);//()
 
     while(1){
         //input_mov->read(input_img);
@@ -52,11 +52,11 @@ int main(int argc, char *argv[])
 
         std::cout << " frame : " << frame_count << "/" << input_video_frame_num << std::endl;
         
-        cv::Mat temp = cv::Mat(input_img, cv::Rect(480, 0, 10, 544));//Rect(x, y, width, heighr)
+        cv::Mat temp = cv::Mat(input_img, cv::Rect(480, 0, 4, 544));//Rect(x, y, width, heighr)
         
         if(frame_count != 0  )
         {   
-            cv::Mat rec(dst, cv::Rect(frame_count+10, 0, 10, 544));
+            cv::Mat rec(dst, cv::Rect(frame_count*4, 0, 4, 544));
             temp.copyTo(rec);
         }
 
@@ -64,7 +64,7 @@ int main(int argc, char *argv[])
         cv::waitKey(40);//10ms
         frame_count++;
     }
-    cv::imwrite("./img/no_mag_time1.jpg", dst);
+    cv::imwrite("./img/mag_time1.jpg", dst);
 
     return 0;
 }
